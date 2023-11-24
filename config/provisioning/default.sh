@@ -33,7 +33,11 @@ CHECKPOINT_MODELS=(
 )
 
 LORA_MODELS=(
-    #"https://civitai.com/api/download/models/16576"
+    "https://civitai.com/api/download/models/62833?type=Model&format=SafeTensor" #add detail
+    "https://civitai.com/api/download/models/223168?type=Model&format=SafeTensor" #https://civitai.com/models/198359?modelVersionId=223168
+    "https://civitai.com/api/download/models/108761?type=Model&format=SafeTensor" #dynamickungfu https://civitai.com/models/101606?modelVersionId=108761
+    "https://civitai.com/api/download/models/31200?type=Model&format=SafeTensor&size=full&fp=fp16" #lucky star
+    "https://civitai.com/api/download/models/55644?type=Model&format=SafeTensor" #Multiple Girls Group    
 )
 
 VAE_MODELS=(
@@ -70,7 +74,8 @@ CONTROLNET_MODELS=(
 )
 
 MOTION_MODELS=(
-    "https://civitai.com/api/download/models/219642?type=Model&format=PickleTensor"
+    "https://civitai.com/api/download/models/159987?type=Model&format=PickleTensor&size=full&fp=fp32" #https://civitai.com/models/108836?modelVersionId=159987
+    "https://civitai.com/api/download/models/160418?type=Model&format=PickleTensor" #https://civitai.com/models/144354/temporaldiff-motion-module
 )
 
 TEXTUAL_INVERSION_MODELS=(
@@ -109,7 +114,7 @@ function provisioning_start() {
         "/opt/stable-diffusion-webui/extensions/sd-webui-animatediff/model" \
         "${MOTION_MODELS[@]}"
     provisioning_get_models \
-        "/opt/stable-diffusion-webui/textual_inversion_templates" \
+        "/opt/stable-diffusion-webui/embeddings" \
         "${TEXTUAL_INVERSION_MODELS[@]}"
         
     provisioning_print_end
