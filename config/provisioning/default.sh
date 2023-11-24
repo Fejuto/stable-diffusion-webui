@@ -20,10 +20,16 @@ EXTENSIONS=(
     "https://github.com/fkunn1326/openpose-editor"
     "https://github.com/Gourieff/sd-webui-reactor"
     "https://github.com/civitai/sd_civitai_extension"
+    "https://github.com/continue-revolution/sd-webui-animatediff"
 )
 
 CHECKPOINT_MODELS=(
-    "https://civitai.com/api/download/models/93208?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+    "https://civitai.com/api/download/models/93208?type=Model&format=SafeTensor&size=pruned&fp=fp16" #darksushi
+    "https://civitai.com/api/download/models/17233?type=Model&format=SafeTensor&size=full&fp=fp16" #abys
+    "https://civitai.com/api/download/models/156202?type=Model&format=SafeTensor&size=full&fp=fp16" #awpainting
+    "https://civitai.com/api/download/models/57618?type=Model&format=SafeTensor&size=pruned&fp=fp16" #counterfeit
+    "https://civitai.com/api/download/models/119057?type=Model&format=SafeTensor&size=pruned&fp=fp16" #meinamix
+    "https://civitai.com/api/download/models/146761?type=Model&format=SafeTensor&size=pruned&fp=fp16" #counterfeit XL
 )
 
 LORA_MODELS=(
@@ -31,9 +37,11 @@ LORA_MODELS=(
 )
 
 VAE_MODELS=(
-    "https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.safetensors"
-    "https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors"
-    "https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
+    #"https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.safetensors"
+    #"https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors"
+    #"https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors"
+    "https://civitai.com/api/download/models/131654?type=Model&format=SafeTensor"
+    "https://civitai.com/api/download/models/131656?type=Model&format=SafeTensor"
 )
 
 ESRGAN_MODELS=(
@@ -51,7 +59,7 @@ CONTROLNET_MODELS=(
     "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_openpose-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_scribble-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
-    "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_canny-fp16.safetensors"
+    #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_canny-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_color-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_depth-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_keypose-fp16.safetensors"
@@ -59,6 +67,17 @@ CONTROLNET_MODELS=(
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_seg-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_sketch-fp16.safetensors"
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_style-fp16.safetensors"
+)
+
+MOTION_MODELS=(
+    "https://civitai.com/api/download/models/219642?type=Model&format=PickleTensor"
+)
+
+TEXTUAL_INVERSION_MODELS=(
+    "https://civitai.com/api/download/models/9208?type=Model&format=SafeTensor&size=full&fp=fp16"
+    "https://civitai.com/api/download/models/107234?type=Model&format=SafeTensor"
+    "https://civitai.com/api/download/models/5637?type=Model&format=PickleTensor&size=full&fp=fp16"
+    "https://civitai.com/api/download/models/20068?type=Model&format=PickleTensor&size=full&fp=fp16"
 )
 
 
@@ -85,6 +104,14 @@ function provisioning_start() {
     provisioning_get_models \
         "/opt/stable-diffusion-webui/models/ESRGAN" \
         "${ESRGAN_MODELS[@]}"
+    
+    provisioning_get_models \
+        "/opt/stable-diffusion-webui/extensions/sd-webui-animatediff/model" \
+        "${MOTION_MODELS[@]}"
+    provisioning_get_models \
+        "/opt/stable-diffusion-webui/textual_inversion_templates" \
+        "${TEXTUAL_INVERSION_MODELS[@]}"
+        
     provisioning_print_end
 }
 
